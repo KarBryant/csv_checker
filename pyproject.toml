@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "csv_checker"
+version = "0.1.0"
+description = "A csv information gathering cli tool"
+authors = [{name = "Karson Bryant"}]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.11"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
