@@ -11,5 +11,13 @@ license = { text = "MIT" }
 readme = "README.md"
 requires-python = ">=3.11"
 
+dependencies = [
+    "typer[all]>=0.12",
+    "rich>=13.0"
+]
+
 [tool.setuptools]
 package-dir = {"" = "src"}
+
+[project.scripts]
+csv_checker = "csv_checker.cli:main"
