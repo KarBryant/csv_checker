@@ -33,7 +33,7 @@ def metrics(path: Annotated[
     output_table.add_row("Empty Cell Count", str(result.empty_cell_count))
     output_table.add_row("Blank Count By Column", str(result.blank_count_by_column))
     output_table.add_row("Rows With Extra Fields", str(result.rows_with_extra_fields))
-    output_table.add_row("Rows With Missing Fields", str(result.rows_with_extra_fields))
+    output_table.add_row("Rows With Missing Fields", str(result.rows_with_missing_fields))
     output_table.add_row("Generated At", str(result.generated_at.ctime()))
 
     console.print(output_table)
