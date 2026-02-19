@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 
+
 @dataclass(frozen=True)
 class CsvMetrics:
     # Structure
@@ -17,7 +18,7 @@ class CsvMetrics:
     # Data quality
     empty_row_count: int
     empty_cell_count: int
-    blank_count_by_column: tuple[int,...]
+    blank_count_by_column: tuple[int, ...]
     rows_with_extra_fields: int
     rows_with_missing_fields: int
 

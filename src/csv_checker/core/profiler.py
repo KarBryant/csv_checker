@@ -3,17 +3,18 @@ from csv_checker.adapters.reader import Reader
 from pathlib import Path
 from datetime import datetime, timezone
 
+
 class Profiler:
 
     @staticmethod
-    def collect_metrics(path:Path, has_header: bool = True) -> CsvMetrics:
+    def collect_metrics(path: Path, has_header: bool = True) -> CsvMetrics:
         rows = Reader.read(path)
 
         headers = None
         headers_consumed = False
         column_count = 0
         row_count = 0
-        min_field_count = float('inf')
+        min_field_count = float("inf")
         max_field_count = 0
 
         empty_header_columns = set()
@@ -30,7 +31,7 @@ class Profiler:
             if has_header and not headers_consumed:
                 headers = []
                 seen_headers = set()
-                for index,item in enumerate(row):
+                for index, item in enumerate(row):
                     item = item.strip()
                     headers.append(item)
                     if item == "":
@@ -61,11 +62,10 @@ class Profiler:
                 min_field_count = field_count
                 max_field_count = field_count
                 blank_count_by_column = [0] * column_count
-                
-            
-            if all(cell.strip()=="" for cell in row):
+
+            if all(cell.strip() == "" for cell in row):
                 empty_row_count += 1
-            
+
             row_count += 1
 
             if field_count > max_field_count:
@@ -73,7 +73,7 @@ class Profiler:
 
             if field_count < min_field_count:
                 min_field_count = field_count
-            
+
             if field_count > column_count:
                 rows_with_extra_fields += 1
 
@@ -81,29 +81,31 @@ class Profiler:
                 rows_with_missing_fields += 1
                 difference = column_count - field_count
                 empty_cell_count += difference
-                for index in range(field_count,column_count):
+                for index in range(field_count, column_count):
                     blank_count_by_column[index] += 1
 
             for index, cell in enumerate(row[:column_count]):
                 if cell.strip() == "":
                     empty_cell_count += 1
                     blank_count_by_column[index] += 1
-        
+
         if min_field_count == float("inf"):
             min_field_count = 0
 
-        metrics = CsvMetrics(headers=headers,
-                            column_count=column_count,
-                            row_count=row_count,
-                            min_field_count=min_field_count,
-                            max_field_count=max_field_count,
-                            empty_header_columns=sorted(empty_header_columns),
-                            duplicate_headers=duplicate_headers,
-                            empty_row_count=empty_row_count,
-                            empty_cell_count=empty_cell_count,
-                            blank_count_by_column=tuple(blank_count_by_column),
-                            rows_with_extra_fields=rows_with_extra_fields,
-                            rows_with_missing_fields=rows_with_missing_fields,
-                            generated_at= datetime.now(timezone.utc))
+        metrics = CsvMetrics(
+            headers=headers,
+            column_count=column_count,
+            row_count=row_count,
+            min_field_count=min_field_count,
+            max_field_count=max_field_count,
+            empty_header_columns=sorted(empty_header_columns),
+            duplicate_headers=duplicate_headers,
+            empty_row_count=empty_row_count,
+            empty_cell_count=empty_cell_count,
+            blank_count_by_column=tuple(blank_count_by_column),
+            rows_with_extra_fields=rows_with_extra_fields,
+            rows_with_missing_fields=rows_with_missing_fields,
+            generated_at=datetime.now(timezone.utc),
+        )
 
         return metrics

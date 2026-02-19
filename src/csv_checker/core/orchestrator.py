@@ -2,8 +2,9 @@ from pathlib import Path
 from csv_checker.core.profiler import Profiler
 from csv_checker.models.csv_metrics import CsvMetrics
 
+
 class Orchestrator:
-    
+
     @staticmethod
     def profile(path: Path, has_header: bool = True) -> CsvMetrics:
         path = path.expanduser().resolve()
