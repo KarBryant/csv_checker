@@ -5,9 +5,18 @@ from datetime import datetime, timezone
 
 
 class Profiler:
+    """
+    Collects metric data about a provided CSV file.
+    """
 
     @staticmethod
     def collect_metrics(path: Path, has_header: bool = True) -> CsvMetrics:
+        """
+        Reads a csv file and computes structural and data quality metrics.
+
+        If has_header is True, the first row is treated as headers
+        and excluded from the data row count.
+        """
         rows = Reader.read(path)
 
         headers = None

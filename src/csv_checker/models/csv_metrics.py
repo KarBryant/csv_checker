@@ -4,6 +4,11 @@ from datetime import datetime
 
 @dataclass(frozen=True)
 class CsvMetrics:
+    """
+    Stores data from profiling a csv file.
+
+    Includes structural, header, and data-quality related metrics.
+    """
     # Structure
     headers: list[str] | None
     column_count: int

@@ -19,7 +19,12 @@ def metrics(
         ),
     ] = True,
 ):
+    """
+    Analyze a CSV file and print structural and data-quality metrics.
 
+    By default, the first row is treated as headers unless
+    --no-headers is specified.
+    """
     output_table = Table(title="CSV Metrics")
     output_table.add_column("Metric")
     output_table.add_column("Value(s)")
