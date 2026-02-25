@@ -55,8 +55,6 @@ class Profiler:
                         duplicate_headers[item] += 1
 
                 column_count = field_count
-                min_field_count = field_count
-                max_field_count = field_count
                 headers_consumed = True
                 blank_count_by_column = [0] * column_count
                 continue
@@ -68,8 +66,6 @@ class Profiler:
                     row_count += 1
                     continue
                 column_count = field_count
-                min_field_count = field_count
-                max_field_count = field_count
                 blank_count_by_column = [0] * column_count
 
             if all(cell.strip() == "" for cell in row):

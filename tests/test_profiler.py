@@ -20,7 +20,7 @@ def test_profile_bad_data(bad_csv_file):
     assert data.empty_row_count == 1
     assert len(data.empty_header_columns) == 1
     assert data.duplicate_headers == {"age": 3}
-    assert data.max_field_count == 5
+    assert data.max_field_count == 9
     assert data.min_field_count == 2
     assert data.rows_with_extra_fields == 1
 
