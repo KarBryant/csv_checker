@@ -7,6 +7,7 @@ class Orchestrator:
     """
     Coordinates CSV profiling and validation of input by calling the appropriate services.
     """
+
     @staticmethod
     def profile(path: Path, has_header: bool = True) -> CsvMetrics:
         """

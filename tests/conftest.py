@@ -1,18 +1,16 @@
 import pytest
 from pathlib import Path
 
-@pytest.fixture
-def csv_file(tmp_path:Path) -> Path:
-    file = tmp_path / "file.csv"
-    file.write_text(
-        "id,name,age\n"
-        "101,joe,30\n"
-        "102,jane,31"
-    )
-    return file
 
 @pytest.fixture
-def bad_csv_file(tmp_path:Path) -> Path:
+def csv_file(tmp_path: Path) -> Path:
+    file = tmp_path / "file.csv"
+    file.write_text("id,name,age\n" "101,joe,30\n" "102,jane,31")
+    return file
+
+
+@pytest.fixture
+def bad_csv_file(tmp_path: Path) -> Path:
     file = tmp_path / "file.csv"
     file.write_text(
         "id,name,age,,age,age\n"
@@ -24,33 +22,30 @@ def bad_csv_file(tmp_path:Path) -> Path:
     )
     return file
 
+
 @pytest.fixture
-def empty_csv_file(tmp_path:Path) -> Path:
+def empty_csv_file(tmp_path: Path) -> Path:
     file = tmp_path / "file.csv"
     file.write_text("")
     return file
 
-@pytest.fixture
-def no_header_csv_file(tmp_path:Path) -> Path:
-    file = tmp_path / "file.csv"
-    file.write_text(
-        "101,karson,30\n"
-        "102,danielle,31"
-    )
-    return file
 
 @pytest.fixture
-def no_header_with_empty_first_row(tmp_path:Path) -> Path:
+def no_header_csv_file(tmp_path: Path) -> Path:
     file = tmp_path / "file.csv"
-    file.write_text(
-        ",,\n"
-        "101,karson,30\n"
-        "102,danielle,31"
-    )
+    file.write_text("101,karson,30\n" "102,danielle,31")
     return file
 
+
 @pytest.fixture
-def test_dir(tmp_path:Path) -> Path:
+def no_header_with_empty_first_row(tmp_path: Path) -> Path:
+    file = tmp_path / "file.csv"
+    file.write_text(",,\n" "101,karson,30\n" "102,danielle,31")
+    return file
+
+
+@pytest.fixture
+def test_dir(tmp_path: Path) -> Path:
     dir = tmp_path / "testdir"
     dir.mkdir()
     file = dir / "test.txt"

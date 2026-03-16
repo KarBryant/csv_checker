@@ -6,6 +6,7 @@ class Reader:
     """
     Reads a CSV file and yeilds its rows.
     """
+
     @staticmethod
     def read(datafile: Path):
         """

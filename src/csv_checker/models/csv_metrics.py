@@ -9,6 +9,7 @@ class CsvMetrics:
 
     Includes structural, header, and data-quality related metrics.
     """
+
     # Structure
     headers: list[str] | None
     column_count: int
