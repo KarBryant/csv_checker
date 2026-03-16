@@ -1,5 +1,7 @@
 import pytest
 from pathlib import Path
+from csv_checker.models.csv_metrics import CsvMetrics
+from csv_checker.core.profiler import Profiler
 
 
 @pytest.fixture
@@ -52,3 +54,13 @@ def test_dir(tmp_path: Path) -> Path:
     file.write_text("fubar")
 
     return dir
+
+@pytest.fixture
+def profiler():
+    profiler = Profiler()
+    return profiler
+
+@pytest.fixture
+def basic_results(csv_file, profiler) -> CsvMetrics:
+    results = profiler.collect_metrics(csv_file)
+    return results
